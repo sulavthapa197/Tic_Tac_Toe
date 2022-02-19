@@ -6,13 +6,14 @@
 char board[3][3] = {'-','-','-','-','-','-','-','-','-'};//board for tictactoe game
 bool game_active = true;//Boolean to check the status of game
 char current_player = 'X';//current player(player to start first)
-char *winner = '\0'; // null type
+char winner; // empty character to store the winner
 //variable declaration end
 
 
 //function declaration begin
 void display_board(char board[3][3]);
 void player_swap();
+void game_winner();
 char check_row();
 char check_column();
 char check_diagonal();
@@ -23,6 +24,8 @@ char check_diagonal();
 //main funtion that begins the game
 int main(){
 	display_board(board);
+	check_row();
+	game_winner();
 	return 0;
 }
 
@@ -48,6 +51,29 @@ void player_swap(){
 	}
 	else if(current_player == 'O'){
 		current_player = 'X';
+	}
+}
+
+
+void game_winner(){ // function to tell "X" or "O" won the game
+	char row_winner, column_winner, diagonal_winner;
+	row_winner = check_row();
+	column_winner = check_column();
+	diagonal_winner = check_diagonal();
+	if (row_winner){
+		winner = row_winner;
+	}
+
+	else if(column_winner){
+		winner = column_winner;
+	}
+
+	else if(diagonal_winner){
+		winner = diagonal_winner;
+	}
+
+	else{
+		winner = '\0';
 	}
 }
 
@@ -132,7 +158,10 @@ char check_diagonal(){ // funtion to check diagonals of the game
 	- row check function
 	- column check function
 	- diagonal check function
-
+* work on slecting either "X" or "O" during beginning of the game
+		- work on single player mode as well(automate the second player)
 * function to check draw
 * function to determine the turn
-* incor[orate all these functions into the main() */
+* incor[orate all these functions into the main() 
+
+*/
