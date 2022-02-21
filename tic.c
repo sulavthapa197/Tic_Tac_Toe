@@ -13,7 +13,7 @@ char winner; // empty character to store the winner
 //function declaration begin
 void display_board(char board[3][3]);
 void player_swap();
-void game_winner();
+//void game_winner();
 char check_row();
 char check_column();
 char check_diagonal();
@@ -25,7 +25,7 @@ char check_diagonal();
 int main(){
 	display_board(board);
 	check_row();
-	game_winner();
+	//game_winner();
 	return 0;
 }
 
@@ -54,7 +54,7 @@ void player_swap(){
 	}
 }
 
-
+/*
 void game_winner(){ // function to tell "X" or "O" won the game
 	char row_winner, column_winner, diagonal_winner;
 	row_winner = check_row();
@@ -76,7 +76,7 @@ void game_winner(){ // function to tell "X" or "O" won the game
 		winner = '\0';
 	}
 }
-
+*/
 
 char check_row(){ //functionn to check row of the game
 	char row_1, row_2, row_3;
