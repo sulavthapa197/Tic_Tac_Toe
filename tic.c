@@ -3,17 +3,17 @@
 
 
 // variable declaration start
-char board[3][3] = {'-','-','-','-','-','-','-','-','-'};//board for tictactoe game
+char board[3][3] = {'X','X','X','X','-','-','-','-','-'};//board for tictactoe game
 bool game_active = true;//Boolean to check the status of game
 char current_player = 'X';//current player(player to start first)
-char winner; // empty character to store the winner
+char winner = 'N'; // N representing no one is the winner yet
 //variable declaration end
 
 
 //function declaration begin
 void display_board(char board[3][3]);
 void player_swap();
-//void game_winner();
+void game_winner();
 char check_row();
 char check_column();
 char check_diagonal();
@@ -23,9 +23,10 @@ char check_diagonal();
 
 //main funtion that begins the game
 int main(){
+	printf("%c\n",winner );
 	display_board(board);
-	check_row();
-	//game_winner();
+	game_winner();
+	printf("%c",winner);
 	return 0;
 }
 
@@ -54,96 +55,78 @@ void player_swap(){
 	}
 }
 
-/*
+
 void game_winner(){ // function to tell "X" or "O" won the game
 	char row_winner, column_winner, diagonal_winner;
 	row_winner = check_row();
 	column_winner = check_column();
 	diagonal_winner = check_diagonal();
-	if (row_winner){
+	if (row_winner != 'N'){
 		winner = row_winner;
 	}
 
-	else if(column_winner){
+	else if(column_winner != 'N'){
 		winner = column_winner;
 	}
 
-	else if(diagonal_winner){
+	else if(diagonal_winner != 'N'){
 		winner = diagonal_winner;
 	}
 
 	else{
-		winner = '\0';
+		winner = 'N';
 	}
 }
-*/
+
 
 char check_row(){ //functionn to check row of the game
-	char row_1, row_2, row_3;
-	row_1 = board[0][0] == board[0][1] == board[0][2] != '-';
-	row_2 = board[1][0] == board[1][1] == board[1][2] != '-';
-	row_3 = board[2][0] == board[2][1] == board[2][2] != '-';
-
-	if (row_1 || row_2 || row_3){
+	if ((board[0][0] == board[0][1] == board[0][2]) && (board[0][0] != '-')){
 		game_active = false;
-	}
-
-	if (row_1){
 		return board[0][0];
 	}
 
-	else if (row_2){
+	else if ((board[1][0] == board[1][1] == board[1][2]) && (board[1][0] != '-')){
+		game_active = false;
 		return board[1][0];
 	}
 
-	else if (row_3){
+	else if ((board[2][0] == board[2][1] == board[2][2]) && (board[2][0] != '-')){
+		game_active = false;
 		return board[2][0];
 	}
-	return '\0';
+	return 'N';
 
 }
 
 char check_column(){ // function to check column of the game
-	char column_1, column_2, column_3;
-	column_1 = board[0][0] == board[1][0] == board[2][0] != '-';
-	column_2 = board[0][1] == board[1][1] == board[2][1] != '-';
-	column_3 = board[0][2] == board[1][2] == board[2][2] != '-';
-
-	if (column_1 || column_2 || column_3){
+	if ((board[0][0] == board[1][0] == board[2][0]) && (board[0][0] != '-')){
 		game_active = false;
-	}
-
-	if (column_1){
 		return board[0][0];
 	}
 
-	else if (column_2){
+	else if ((board[0][1] == board[1][1] == board[2][1]) && (board[0][1] != '-')){
+		game_active = false;
 		return board[0][1];
 	}
 
-	else if (column_3){
+	else if ((board[0][2] == board[1][2] == board[1][2]) && (board[0][2] != '-')){
+		game_active = false;
 		return board[0][2];
 	}
-	return '\0';
+	return 'N';
 
 }
 
 char check_diagonal(){ // funtion to check diagonals of the game
-	char diagonal_1, diagonal_2;
-	diagonal_1 = board[0][0] == board[1][1] == board[2][2] != '-';
-	diagonal_2 = board[0][2] == board[1][1] == board[2][0] != '-';
-
-	if (diagonal_1 || diagonal_2){
+	if ((board[0][0] == board[1][1] == board[2][2]) && (board[0][0] != '-')){
 		game_active = false;
-	}
-
-	if (diagonal_1){
 		return board[0][0];
 	}
-	else if (diagonal_2){
+	else if ((board[0][2] == board[1][1] == board[2][0]) && (board[0][2] != '-')){
+		game_active = false;
 		return board[0][2];
 	}
-	return '\0';
+	return 'N';
 }
 
 
