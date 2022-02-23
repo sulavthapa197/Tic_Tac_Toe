@@ -14,6 +14,8 @@ char winner = 'N'; // N representing no one is the winner yet
 void display_board(char board[3][3]);
 void player_swap();
 void game_winner();
+void check_draw();
+int game_turn(char current_player);
 char check_row();
 char check_column();
 char check_diagonal();
@@ -25,7 +27,10 @@ char check_diagonal();
 int main(){
 	printf("%c\n",winner );
 	display_board(board);
+	game_turn(current_player);
 	game_winner();
+	check_draw();
+	printf("\n");
 	printf("%c",winner);
 	return 0;
 }
@@ -129,6 +134,29 @@ char check_diagonal(){ // funtion to check diagonals of the game
 	return 'N';
 }
 
+void check_draw(){ //function to check draw condition in the game
+	char row_winner, column_winner, diagonal_winner;
+	row_winner = check_row();
+	column_winner = check_column();
+	diagonal_winner = check_diagonal();
+	if (row_winner == 'N' && column_winner == 'N' && diagonal_winner == 'N'){
+		game_active = false;
+		winner = 'D'; // 'D' here implies the game has been concluded as a draw
+	}
+}
+
+
+int game_turn(char current_player){ //function that specifies player's turn respectively, turn refering 'X' or 'O'
+	char board_position;
+	bool correct = false;
+
+	printf("%c", current_player);
+	printf("'s turn\n");
+	printf("Enter your board position: ");
+	scanf("%c", &board_position);
+	return 0;
+	
+}
 
 
 
@@ -137,13 +165,9 @@ char check_diagonal(){ // funtion to check diagonals of the game
 /* to be done list 
 
 *input users data 
-* function to check winner
-	- row check function
-	- column check function
-	- diagonal check function
+
 * work on slecting either "X" or "O" during beginning of the game
 		- work on single player mode as well(automate the second player)
-* function to check draw
 * function to determine the turn
 * incor[orate all these functions into the main() 
 
