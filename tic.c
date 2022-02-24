@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-
 // variable declaration start
-char board[3][3] = {'X','O','X','X','X','O','O','X','O'};//board for tictactoe game
+char board[3][3] = {'-','O','X','X','X','O','O','X','O'};//board for tictactoe game
 bool game_active = true;//Boolean to check the status of game
 char current_player = 'X';//current player(player to start first)
 char winner = 'N'; // N representing no one is the winner yet
@@ -32,6 +31,7 @@ int main(){
 	check_draw();
 	printf("\n");
 	printf("%c",winner);
+	display_board(board);
 	return 0;
 }
 
@@ -147,13 +147,60 @@ void check_draw(){ //function to check draw condition in the game
 
 
 int game_turn(char current_player){ //function that specifies player's turn respectively, turn refering 'X' or 'O'
+	int i;
 	char board_position;
 	bool correct = false;
+	char board_input[9] = {'1','2','3','4','5','6','7','8','9'};
 
 	printf("%c", current_player);
 	printf("'s turn\n");
 	printf("Enter your board position: ");
 	scanf("%c", &board_position);
+
+	while(!correct){
+		for(i=0; i<9; i++){
+			if (board_position == board_input[i]){
+				switch(board_position){
+					case '1':
+						board[0][0] = current_player;
+						correct = true;
+						break;
+					case '2':
+						board[0][1] = current_player;
+						correct = true;
+						break;
+					case '3':
+						board[0][2] = current_player;
+						correct = true;
+						break;
+					case '4':
+						board[1][0] = current_player;
+						correct = true;
+						break;
+					case '5':
+						board[1][1] = current_player;
+						correct = true;
+						break;
+					case '6':
+						board[1][2] = current_player;
+						correct = true;
+						break;
+					case '7':
+						board[2][0] = current_player;
+						correct = true;
+						break;
+					case '8':
+						board[2][1] = current_player;
+						correct = true;
+						break;
+					case '9':
+						board[2][2] = current_player;
+						correct = true;
+						break;
+				}				
+			}
+		}
+	}
 	return 0;
 	
 }
