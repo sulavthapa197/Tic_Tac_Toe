@@ -31,9 +31,18 @@ int main(){
 	game_winner();
 	check_draw();
 	printf("\n");
-	printf("%c\n",winner);
-	display_board(board);
 
+	display_board(board);
+	//printf("%c",winner);
+	if (winner == 'X' || winner == 'O'){
+		printf("%c",winner);
+		printf(" won.");	
+	}
+	else if (winner == 'D'){
+		printf("Draw");
+	}
+
+	
 	return 0;
 }
 
@@ -154,7 +163,7 @@ int game_turn(char current_player){ //function that specifies player's turn resp
 	int i,j,k;
 	int board_position;
 	bool correct = false;
-	char board_input[9] = {'1','2','3','4','5','6','7','8','9'};
+	int board_input[9] = {1,2,3,4,5,6,7,8,9};
 
 	printf("%c", current_player);
 	printf("'s turn\n"); 
@@ -168,41 +177,41 @@ int game_turn(char current_player){ //function that specifies player's turn resp
 		}
 		else{
 			for (i=0; i<9; i++){
-				if ((char)board_position == board_input[i]){
-					switch((char)board_position){
-						case '1':
+				if (board_position == board_input[i]){
+					switch(board_position){
+						case 1:
 							board[0] = current_player;
 							correct = true;
 							break;
-						case '2':
+						case 2:
 							board[1] = current_player;
 							correct = true;
 							break;
-						case '3':
+						case 3:
 							board[2] = current_player;
 							correct = true;
 							break;
-						case '4':
+						case 4:
 							board[3] = current_player;
 							correct = true;
 							break;
-						case '5':
+						case 5:
 							board[4] = current_player;
 							correct = true;
 							break;
-						case '6':
+						case 6:
 							board[5] = current_player;
 							correct = true;
 							break;
-						case '7':
+						case 7:
 							board[6] = current_player;
 							correct = true;
 							break;
-						case '8':
+						case 8:
 							board[7] = current_player;
 							correct = true;
 							break;
-						case '9':
+						case 9:
 							board[8] = current_player;
 							correct = true;
 							break;
