@@ -3,22 +3,23 @@
 #include <stdlib.h>
 
 // variable declaration start
-char board[9] = {'-','-','-','-','-','-','-','-','-'}; //array for the game board
 bool game_active = true;//Boolean to check the status of game
-char current_player = 'X';//current player(player to start first)
+char board[9] = {'-','-','-','-','-','-','-','-','-'}; //array for the game board
+char current_player;//current player(player to start first)
 char winner = 'N'; // N representing no one is the winner yet
 //variable declaration end
 
 
 //function declaration begin
+char check_row();
+char check_column();
+char check_diagonal();
+int game_turn(char current_player);
 void display_board(char board[9]);
 void player_swap();
 void game_winner();
 void check_draw();
-int game_turn(char current_player);
-char check_row();
-char check_column();
-char check_diagonal();
+void player_select();
 //function declaration end
 
 
@@ -26,6 +27,7 @@ char check_diagonal();
 //main funtion that begins the game
 int main(){
 	//printf("%c\n",winner );
+	player_select();
 	display_board(board);
 	while(game_active == true){
 		game_turn(current_player);
@@ -40,7 +42,8 @@ int main(){
 	}
 	else if (winner == 'D'){
 		printf("Draw");
-	}	
+	}
+
 	return 0;
 }
 
@@ -232,14 +235,36 @@ int game_turn(char current_player){ //function that specifies player's turn resp
 	
 }
 
+void player_select(){ //select the player 'X' or 'o'
+	bool correct = false;
+	char player_input ; // temp varibale to store what player inputs
+	printf("Enter the player you want to start as(X/O): ");
+	scanf("%c", &player_input);
+	printf("\n");
+	while(!correct){
+		if(player_input == 'X' || player_input == 'x'){
+			current_player = 'X';
+			correct = true;
+		}
 
+		else if( player_input == 'O' || player_input == 'o' || player_input == '0'){
+			current_player = 'O';
+			correct = true;
+		}
+
+		else{
+			printf("please enter valid input: ");
+			scanf("%c", &player_input);
+		}
+
+	}
+}
 
 
 
 /* to be done list 
 
-* work on slecting either "X" or "O" during beginning of the game
-		- work on single player mode as well(automate the second player)
+*work on single player mode as well(automate the second player)
 
 
 */
