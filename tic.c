@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 // variable declaration start
 char board[9] = {'-','-','-','-','-','-','-','-','-'}; //array for the game board
@@ -24,7 +25,7 @@ char check_diagonal();
 
 //main funtion that begins the game
 int main(){
-	printf("%c\n",winner );
+	//printf("%c\n",winner );
 	display_board(board);
 	while(game_active == true){
 		game_turn(current_player);
@@ -172,6 +173,7 @@ int game_turn(char current_player){ //function that specifies player's turn resp
 	printf("'s turn\n"); 
 	printf("Enter your board position: ");
 	scanf("%d", &board_position);
+	printf("\n");
 
 	while (!correct){
 		if (board[board_position-1] != '-'){
@@ -223,7 +225,9 @@ int game_turn(char current_player){ //function that specifies player's turn resp
 			}
 		}
 	}
+	system("cls");
 	display_board(board);
+
 	return 0;			
 	
 }
