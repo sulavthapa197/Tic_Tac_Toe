@@ -2,8 +2,7 @@
 #include <stdbool.h>
 
 // variable declaration start
-//char board[3][3] = {'-','O','X','X','X','O','O','X','O'};//board for tictactoe game
-char board[9] = {'-','O','X','X','X','O','O','X','O'};
+char board[9] = {'-','-','-','-','-','-','-','-','-'}; //array for the game board
 bool game_active = true;//Boolean to check the status of game
 char current_player = 'X';//current player(player to start first)
 char winner = 'N'; // N representing no one is the winner yet
@@ -27,22 +26,20 @@ char check_diagonal();
 int main(){
 	printf("%c\n",winner );
 	display_board(board);
-	game_turn(current_player);
-	game_winner();
-	check_draw();
-	printf("\n");
-
-	display_board(board);
-	//printf("%c",winner);
+	while(game_active == true){
+		game_turn(current_player);
+		game_winner();
+		player_swap();
+		check_draw();
+		printf("\n");
+	}
 	if (winner == 'X' || winner == 'O'){
 		printf("%c",winner);
 		printf(" won.");	
 	}
 	else if (winner == 'D'){
 		printf("Draw");
-	}
-
-	
+	}	
 	return 0;
 }
 
@@ -95,7 +92,7 @@ void game_winner(){ // function to tell "X" or "O" won the game
 }
 
 
-char check_row(){ //functionn to check row of the game
+char check_row(){//functionn to check row of the game
 	if (board[0] == board[1] && board[1] == board[2] && board[0] != '-'){
 		game_active = false;
 		return board[0];
@@ -148,16 +145,22 @@ char check_diagonal(){ // funtion to check diagonals of the game
 
 
 void check_draw(){ //function to check draw condition in the game
+	int i;
+	int j = 9; // "j" here works as a logic check variable
 	char row_winner, column_winner, diagonal_winner;
 	row_winner = check_row();
 	column_winner = check_column();
 	diagonal_winner = check_diagonal();
-	if (row_winner == 'N' && column_winner == 'N' && diagonal_winner == 'N'){
+	for (i = 0; i<9; i++){
+		if (board[i] == '-'){
+			j--;
+		}
+	}
+	if (j == 9 && row_winner == 'N' && column_winner == 'N' && diagonal_winner == 'N'){
 		game_active = false;
 		winner = 'D'; // 'D' here implies the game has been concluded as a draw
 	}
 }
-
 
 int game_turn(char current_player){ //function that specifies player's turn respectively, turn refering 'X' or 'O'
 	int i,j,k;
@@ -220,6 +223,7 @@ int game_turn(char current_player){ //function that specifies player's turn resp
 			}
 		}
 	}
+	display_board(board);
 	return 0;			
 	
 }
@@ -230,12 +234,9 @@ int game_turn(char current_player){ //function that specifies player's turn resp
 
 /* to be done list 
 
-*input users data 
-
 * work on slecting either "X" or "O" during beginning of the game
 		- work on single player mode as well(automate the second player)
-* function to determine the turn
-* incor[orate all these functions into the main() 
+
 
 */
 
