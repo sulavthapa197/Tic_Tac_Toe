@@ -256,6 +256,7 @@ void player_select(){ //select the player 'X' or 'o'
 		}
 
 		else{
+			system("cls");
 			printf("please enter valid input: ");
 			player_input = getchar();
 		}
