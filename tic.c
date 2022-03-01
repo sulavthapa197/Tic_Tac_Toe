@@ -240,22 +240,24 @@ void player_select(){ //select the player 'X' or 'o'
 	bool correct = false;
 	char player_input ; // temp varibale to store what player inputs
 	printf("Enter the player you want to start as(X/O): ");
-	scanf("%c", &player_input);
+	player_input = getchar();
 	printf("\n");
 	while(!correct){
 		if(player_input == 'X' || player_input == 'x'){
 			current_player = 'X';
 			correct = true;
+			system("cls");
 		}
 
 		else if( player_input == 'O' || player_input == 'o' || player_input == '0'){
 			current_player = 'O';
 			correct = true;
+			system("cls");
 		}
 
 		else{
 			printf("please enter valid input: ");
-			scanf("%c", &player_input);
+			player_input = getchar();
 		}
 
 	}
