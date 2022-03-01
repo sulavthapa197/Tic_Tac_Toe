@@ -1,6 +1,7 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
+#include <stdio.h> //standard input out
+#include <stdbool.h> // lib for using boolean
+#include <stdlib.h> // lib for using system
+#include <conio.h> // lib for using getch() function
 
 // variable declaration start
 bool game_active = true;//Boolean to check the status of game
@@ -26,7 +27,6 @@ void player_select();
 
 //main funtion that begins the game
 int main(){
-	//printf("%c\n",winner );
 	player_select();
 	display_board(board);
 	while(game_active == true){
@@ -43,7 +43,8 @@ int main(){
 	else if (winner == 'D'){
 		printf("Draw");
 	}
-
+	printf("\nPress any key to quit.");
+	getch();// waits for any key to be pressed before quitting the console
 	return 0;
 }
 
@@ -186,7 +187,7 @@ int game_turn(char current_player){ //function that specifies player's turn resp
 		else{
 			for (i=0; i<9; i++){
 				if (board_position == board_input[i]){
-					switch(board_position){
+					switch(board_position){// switch statement to check and address according to input
 						case 1:
 							board[0] = current_player;
 							correct = true;
@@ -265,7 +266,6 @@ void player_select(){ //select the player 'X' or 'o'
 /* to be done list 
 
 *work on single player mode as well(automate the second player)
-
 
 */
 
